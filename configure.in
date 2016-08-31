@@ -1,0 +1,72 @@
+#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+
+AC_PREREQ([2.68])
+#AC_INIT(pofswitch, 1.1.8.015, yujingzhou@huawei.com)
+#AC_INIT(pofswitch, 1.1.9.015, yujingzhou@huawei.com)
+AC_INIT(pofswitch, 1.4.0.015, yujingzhou@huawei.com)
+AC_CONFIG_SRCDIR([datapath/pof_datapath.c])
+AM_INIT_AUTOMAKE
+
+#AC_DEFINE([POFSWITCH_VERSION_NO], [POFSwitch_VERSION_1_1_8])
+#AC_DEFINE([POFSWITCH_VERSION_NO], [POFSwitch_VERSION_1_1_9])
+AC_DEFINE([POFSWITCH_VERSION_NO], [POFSwitch_VERSION_1_4_0])
+#AC_DEFINE([POFSWITCH_VERSION_NO], [POFSwitch_VERSION_1_5_0])
+AC_DEFINE([POFSWITCH_VERSION_SUB], ["015"])
+
+# Checks for programs.
+AC_PROG_CC
+AC_PROG_RANLIB
+
+# Checks for libraries.
+AC_CHECK_LIB([pthread], [pthread_create])
+
+# Checks for header files.
+AC_CHECK_HEADERS([arpa/inet.h limits.h netinet/in.h stdlib.h string.h sys/socket.h sys/time.h unistd.h stddef.h stdbool.h endian.h])
+
+# Checks for typedefs, structures, and compiler characteristics.
+AC_TYPE_SIZE_T
+AC_TYPE_UINT16_T
+AC_TYPE_UINT32_T
+AC_TYPE_UINT64_T
+AC_TYPE_UINT8_T
+
+# Checks for library functions.
+AC_FUNC_MALLOC
+AC_CHECK_FUNCS([inet_ntoa memset socket])
+
+# Optional Features
+# POF_DEBUG_ON
+AC_ARG_ENABLE([debug], 
+	[AS_HELP_STRING([--enable-debug],[output debug log (default is no)])],
+	[if test "$enableval" == "yes"; then
+		AC_DEFINE([POF_DEBUG_ON],[1],[Define if --enable-debug])
+	fi
+	])
+
+# POF_PROMISC_ON
+AC_ARG_ENABLE([promisc], 
+	[AS_HELP_STRING([--enable-promisc],[can receive the packet which DMAC is
+     not local(default is no)])],
+	[if test "$enableval" == "yes"; then
+		AC_DEFINE([POF_PROMISC_ON],[1],[Define if --enable-promisc])
+	fi
+	])
+
+# POF_DEBUG_COLOR_ON
+AC_ARG_ENABLE([color], 
+	[AS_HELP_STRING([--enable-color],[print with color (default is no)])],
+	[if test "$enableval" == "yes"; then
+		AC_DEFINE([POF_DEBUG_COLOR_ON],[1],[Define if --enable-color])
+	fi
+	])
+
+# POF_DEBUG_PRINT_ECHO_ON
+AC_ARG_ENABLE([echolog], 
+	[AS_HELP_STRING([--enable-echolog],[output echo log (default is no). enable debug is the precondition.])],
+	[if test "$enableval" == "yes"; then
+		AC_DEFINE([POF_DEBUG_PRINT_ECHO_ON],[1],[Define if --enable-echolog])
+	fi
+	])
+
+AC_OUTPUT(Makefile)

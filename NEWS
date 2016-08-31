@@ -1,0 +1,399 @@
+-----------------------------------------------------------------------------
+pofswitch-1.4.0.015                                                2016-03-11
+-----------------------------------------------------------------------------
+    1. Add PacketOut functions. (by Wenjian Fang [fwj@mail.ustc.edu.cn])
+    
+-----------------------------------------------------------------------------
+pofswitch-1.*.*.015                                                2015-03-11
+-----------------------------------------------------------------------------
+    1. Optimize the log and print.
+	2. Improve the performance.
+NOTE: Valid for all of the version.
+
+-----------------------------------------------------------------------------
+pofswitch-1.*.*.014                                                2015-02-12
+-----------------------------------------------------------------------------
+    1. Fix a bug about device ID setting.
+NOTE: Valid for all of the version.
+
+-----------------------------------------------------------------------------
+pofswitch-1.*.*.013                                                2014-08-19
+-----------------------------------------------------------------------------
+    1. Fix a bug about recv function.
+NOTE: Valid for all of the version.
+
+-----------------------------------------------------------------------------
+pofswitch-1.*.*.012                                                2014-08-19
+-----------------------------------------------------------------------------
+    1. The macro of the version in global.h is move into configure.in.
+NOTE: Valid for all of the version.
+
+-----------------------------------------------------------------------------
+pofswitch-1.1.9.011                                                2014-08-19
+-----------------------------------------------------------------------------
+    1. Change the Counter Command from POFCC_QUERY_RESULT to POFCC_QUERY when
+       reply the counter request.
+NOTE: Only for 1.1.9
+
+-----------------------------------------------------------------------------
+pofswitch-1.1.8.009                                                2014-07-28
+-----------------------------------------------------------------------------
+    1. Change the Counter Command from POFCC_QUERY_RESULT to POFCC_QUERY when
+       reply the counter request.
+NOTE: Only for 1.1.8
+
+-----------------------------------------------------------------------------
+pofswitch-1.1.8.008                                                2014-07-28
+-----------------------------------------------------------------------------
+    1. Fix a bug about byte transfer for packet in.
+NOTE: Valid for all of the version.
+
+-----------------------------------------------------------------------------
+pofswitch-1.1.8.007                                                2014-07-28
+-----------------------------------------------------------------------------
+    1. Fix a bug when a new packet is receiving.
+NOTE: Valid for all of the version.
+
+-----------------------------------------------------------------------------
+pofswitch-1.1.8.006                                                2014-07-28
+-----------------------------------------------------------------------------
+    1. The packet in structure contains the port information.
+NOTE: Valid for all of the version.
+
+-----------------------------------------------------------------------------
+pofswitch-1.4.0.005                                                2014-07-01
+-----------------------------------------------------------------------------
+    1. Fix bug about state print.
+    2. Modify global.h so much to support POF_SHT_VXLAN.
+NOTE: The 1st update is valid for 1.1.8 and 1.1.9 and 1.4.0;
+      The 2nd update is enabled only for 1.5
+
+-----------------------------------------------------------------------------
+pofswitch-1.4.0.004                                                2014-06-27
+-----------------------------------------------------------------------------
+    1. Improve the log format about state.
+    2. Fix bug when add or modify a flow entry.
+NOTE: These updates both valid for 1.1.8 and 1.1.9
+
+-----------------------------------------------------------------------------
+pofswitch-1.4.0.003                                                2014-06-26
+-----------------------------------------------------------------------------
+    1. Some features can be enabled by the corresponding macro, shown in the
+       following table.
+     ------------------------------------------------------------------------
+     |        MACRO       |                 FEATURE SUPPORTED               |
+     ------------------------------------------------------------------------
+     | POF_SD2N           | Support most of SD2N functionality.             |
+     ------------------------------------------------------------------------
+     | POF_SD2N_AFTER1015 | The value in ADD_FIELD, WRITE_METADATA structure|
+     |                    | change to be bytes from uint64_t/uint32_t. The  |
+     |                    | CALCULATE_CHECKSUM can be based on metadata.    |
+     ------------------------------------------------------------------------
+     | MULTIPLE_SLOTS     | Support multiple slots.                         |
+     ------------------------------------------------------------------------
+    2. The version of pofswitch branches two, "1.1.8" and "1.1.9", only used
+       for supporting Canada Research Center. The difference between the
+       master version and the branches is the defination of the macros
+       discribed in 1 to support difference features, shown in the following
+       table.
+     -------------------------------------------------------------------------
+     |POFSWITCH|   MACRO DEFINED    |   CORRESPONDING    |   CORRESPONDING   |
+     | VERSION |                    | CONTROLLER VERSION | NE40E V6R3 VERSION|
+     -------------------------------------------------------------------------
+     | 1.3.4        |               |                    |                   |
+     | (PUBLIC ON   | NONE          | 1.1.7 (PUBLIC ON   | NONE              |
+     | THE WEBSITE) |               |       THE WEBSITE) |                   |
+     -------------------------------------------------------------------------
+     | 1.1.8   | POF_SD2N           | 1.1.8              | 20131015.cc       |
+     -------------------------------------------------------------------------
+     | 1.1.9   | POF_SD2N           | 1.1.9              | 20140512.cc       |
+     |         | POF_SD2N_AFTER1015 |                    |                   |
+     -------------------------------------------------------------------------
+     |         | POF_SD2N_AFTER1015 |                    |                   |
+     | 1.4.0   | POF_SD2N_AFTER1015 | 1.4.0              | NONE              |
+     |         | MULTIPLE_SLOTS     |                    |                   |
+     -------------------------------------------------------------------------
+    3. Delete the "--disable-slots" option of "configure".
+
+-----------------------------------------------------------------------------
+pofswitch-1.4.0.002                                                2014-06-19
+-----------------------------------------------------------------------------
+    1. Users can disable the multiple slots functionality using
+       "./configure --disable-slots". Default is enabled.
+
+-----------------------------------------------------------------------------
+pofswitch-1.4.0.001                                                2014-06-05
+-----------------------------------------------------------------------------
+    1. Change the device ID from 0 to 1, when pofswitch can not get the
+       hwaddr of the interface connecting to the pofcontroller.
+
+-----------------------------------------------------------------------------
+pofswitch-1.4.0.000                                                2014-06-03
+-----------------------------------------------------------------------------
+    1. Fix bug about LPM entry delete when the mask of match is all 0.
+    2. Change the table ID in pof_flow_table and pof_flow_entry from global
+       value to local, when reply the query.
+    3. The version number of pofswitch is matching the one of pofcontroller
+       from 1.4.0.000. The last tree numbers are pofswitch's own. The others
+       are the same as pofcontroller.
+
+-----------------------------------------------------------------------------
+pofswitch-1.3.4.021                                                2014-05-12
+-----------------------------------------------------------------------------
+    1. Controller can query all resource of the switch.
+
+-----------------------------------------------------------------------------
+pofswitch-1.3.4.020                                                2014-05-07
+-----------------------------------------------------------------------------
+    1. Support multiple slots. Set the slot number using "-S/--slot-num"
+       start option. The slot IDs are increased one by one from zero.
+    2. If users want to add one port on a specific slot, users can use
+       "--add-port <port name>,<slot ID>" start option, or
+       "addport <port name>,<slot ID>" pof command. If the slot ID is not
+       specified, the default slot ID of the port is zero.
+
+-----------------------------------------------------------------------------
+pofswitch-1.3.4.018                                                2014-04-29
+-----------------------------------------------------------------------------
+    1. Add -e/--empty option to start an empty switch without any port.
+    2. Add a new tool "pofsctrl" for remote control to pofswitch. For example,
+       if pofswitch is running at 127.0.0.1 and listening to port 6634, users
+       can run "pofsctrl -i 127.0.0.1 -L 6634" to connect to pofswitch and
+       send pofcommand to it. "help" is helpful about pofcommand.
+    3. Add -L/--listen-port to set the listening port of pofswitch for
+       pofsctrl, that default is 6634.
+
+-----------------------------------------------------------------------------
+pofswitch-1.3.4.017                                                2014-04-21
+-----------------------------------------------------------------------------
+    1. Improve the task management.
+    2. Fix bug about table delete.
+
+-----------------------------------------------------------------------------
+pofswitch-1.3.4.016                                                2014-04-18
+-----------------------------------------------------------------------------
+    1. Improve the log format.
+
+-----------------------------------------------------------------------------
+pofswitch-1.3.4.015                                                2014-04-17
+-----------------------------------------------------------------------------
+    1. Use List for port name.
+    2. Realize memory management.
+
+-----------------------------------------------------------------------------
+pofswitch-1.3.4.014                                                2014-04-16
+-----------------------------------------------------------------------------
+    1. Fix bugs.
+
+-----------------------------------------------------------------------------
+pofswitch-1.3.4.013                                                2014-04-15
+-----------------------------------------------------------------------------
+    1. Support multiple slots.
+
+-----------------------------------------------------------------------------
+pofswitch-1.3.4.012                                                2014-04-15
+-----------------------------------------------------------------------------
+    1. Use HashMap for group, counter, meter table.
+
+-----------------------------------------------------------------------------
+pofswitch-1.3.4.011                                                2014-04-15
+-----------------------------------------------------------------------------
+    1. Optimize the LPM flow entry.
+
+-----------------------------------------------------------------------------
+pofswitch-1.3.4.010                                                2014-04-14
+-----------------------------------------------------------------------------
+    1. Use HashMap for table information and flow entry.
+    2. Realize different match ways corrresponding to the table type, such as
+       EM, MM, LPM, LINEAR.
+    3. Optimize the source code.
+
+-----------------------------------------------------------------------------
+pofswitch-1.3.4.009                                                2014-04-04
+-----------------------------------------------------------------------------
+    1. Use HashMap for port information.
+
+-----------------------------------------------------------------------------
+pofswitch-1.3.4.005                                                2014-03-25
+-----------------------------------------------------------------------------
+    1. Support Mininet.
+    2. Change the name of the log file.
+    3. Add -V/--verbosity, -P/--promisc, -d/--device-id, -a/--add-port
+       command-line options.
+    4. The port id is not equal to the port index in system namespace right
+       now.
+
+-----------------------------------------------------------------------------
+pofswitch-1.3.4                                                    2014-01-08
+-----------------------------------------------------------------------------
+    1. Fix bug about getting port information. Thanks Sergio for reporting
+       bug and offering the diff file.
+
+-----------------------------------------------------------------------------
+pofswitch-1.3.3.005                                                2013-12-17
+-----------------------------------------------------------------------------
+    1. Print state information after running POFSwitch. You can also use
+       "-s --state" option and "state" pof command to print state information.
+
+-----------------------------------------------------------------------------
+pofswitch-1.3.3.004                                                2013-11-22
+-----------------------------------------------------------------------------
+    1. Fix bug about CALCULATE_CHECKSUM log print.
+
+-----------------------------------------------------------------------------
+pofswitch-1.3.3.003                                                2013-11-19
+-----------------------------------------------------------------------------
+    1. Change the packet-lenght field in METADATA from local byte order to
+       network byte order.
+
+-----------------------------------------------------------------------------
+pofswitch-1.3.3.002                                                2013-11-18
+-----------------------------------------------------------------------------
+    1. Modify the ADD_FIELD Action and WRITE_METADATA Instruction, the value
+       now is a byte flow, which suport 128 bits.
+    2. Modify the CALCULATE_CHECKSUM Action, the checksum position and the
+       calculate position both can be in metadata.
+
+NOTE: These two modification only for CA version.
+
+-----------------------------------------------------------------------------
+pofswitch-1.3.3.001                                                2013-10-09
+-----------------------------------------------------------------------------
+    1. Add packet byte statistics in counter structure. Only for CA version.
+    2. Add pof command: enable_promisc and disable_promisc, which can enable
+       and disable promisc mode.
+    3. Fix bug that packet to send out will be received loopback if port is
+       enable.
+
+-----------------------------------------------------------------------------
+pofswitch-1.3.3                                                    2013-09-29
+-----------------------------------------------------------------------------
+    1. Improve log format.
+    2. Fix bug when the counter id is zero.
+    3. Print the version information when pofswitch starts.
+    4. Pofswitch will drop the packet which length is greater than Ethernet
+       MTU.
+    5. Change the implementation of counter initial.
+    6. Controller can change the counter ID when modify a flow entry.
+
+-----------------------------------------------------------------------------
+pofswitch-1.3.2.005                                                2013-09-22
+-----------------------------------------------------------------------------
+    1. Improve log format.
+    2. Fix bug when the counter id is zero.
+
+-----------------------------------------------------------------------------
+pofswitch-1.3.2.004                                                2013-08-31
+-----------------------------------------------------------------------------
+    1. Print the version information when pofswitch starts.
+    2. Pofswitch will drop the packet which length is greater than Ethernet
+       MTU.
+
+-----------------------------------------------------------------------------
+pofswitch-1.3.2.003                                                2013-08-27
+-----------------------------------------------------------------------------
+    1. Change the implementation of counter initial.
+    2. Controller can change the counter ID when modify a flow entry.
+
+-----------------------------------------------------------------------------
+pofswitch-1.3.2.002                                                2013-08-23
+-----------------------------------------------------------------------------
+    1. The max instruction number per entry is increased from four to six.
+       Only CA version.
+    2. The max action number per instruction is increased from four to six.
+       Only CA version.
+
+-----------------------------------------------------------------------------
+pofswitch-1.3.2.001                                                2013-08-23
+-----------------------------------------------------------------------------
+    1. Modify DELETE_FIELD action. The field length can be from the packet/
+       metadata field right now. Only CA version.
+
+-----------------------------------------------------------------------------
+pofswitch-1.3.2                                                    2013-08-06
+-----------------------------------------------------------------------------
+    1. Implement the priority of the flow entry. If there are two flow entries
+       match the packet, the one which has higher priority will be token. If
+       these flow entries have the same priority, use the first one matched.
+    2. User can enable or disable the debug mode and color mode during the
+       POFSwitch running by using the pof_command: enable_debug, disable_debug,
+       enable_color and disable_color.
+    3. Optimize source code.
+    4. Fix one bugs about log printing and port detection.
+    5. Improve log format.
+
+-----------------------------------------------------------------------------
+pofswitch-1.3.1.005                                                2013-08-06
+-----------------------------------------------------------------------------
+    1. Add three new instructions: POFIT_CONDITIONAL_JMP, POFIT_CALCULATE_FIELD,
+       POFIT_MOVE_PACKET_OFFSET, which are still experiment. Only CA version.
+    2. Modify POFAT_OUTPUT action: the port index can be from packet/metadata
+       field right now. Only CA version.
+    3. User can enable or disable the debug mode and color mode during the
+       POFSwitch running by using the pof_command: enable_debug, disable_debug,
+       enable_color and disable_color.
+    4. Optimize source code.
+    5. Fix one bug about log printing.
+    6. Improve log format.
+
+-----------------------------------------------------------------------------
+pofswitch-1.3.1                                                    2013-07-16
+-----------------------------------------------------------------------------
+    1. In Metadata, there are 128bytes memory to carry global information
+       between tables.The first 16bit is fixed to keep the packet length. The
+       next 8bit is fixed to keep the input port index. The next 8bit is
+       reserved. Other parts is freely defined.
+    2. Fix bug about getting port hwaddr.
+    3. Improve log format.
+
+-----------------------------------------------------------------------------
+pofswitch-1.3.0                                                    2013-07-08
+-----------------------------------------------------------------------------
+    1. Add start options "-h, --help" and "-v, --version" to print help
+       and version information.
+    2. Add start options "-m, --man-clear". POFSwitch will automatically
+       clear the switch resource by default. If you want to maintain the
+       flow tables, counters and so on, please use this option. But switch
+       still clears the resource when reconnection is successful.
+    3. Add start options "-l, --log-file" to save the log to a file, which is
+       /usr/local/var/log/pofswitch.log.
+    4. Add pof_command "version" to print version information during running.
+    5. Ignore the "lo" port.
+    6. Set the Forward Engine and Lookup Engine in device information to
+       POFSwitch version.
+    7. If datapath is enable, check whether the user is root or not. If not,
+       stop running POFSwitch and user should run again with "sudo".
+    8. Fix bug about detecting port.
+
+-----------------------------------------------------------------------------
+pofswitch-1.2.2                                                    2013-06-21
+-----------------------------------------------------------------------------
+    1. Add some debug information when errors exist.
+    2. Fix bug about meter delete.
+
+-----------------------------------------------------------------------------
+pofswitch-1.2.1                                                    2013-06-18
+-----------------------------------------------------------------------------
+    1. Fix bug.
+
+-----------------------------------------------------------------------------
+pofswitch-1.2.0                                                    2013-06-14
+-----------------------------------------------------------------------------
+    1. POFSwitch can detect port state, such as up or down and link or not,
+       dynamically.
+    2. The port without assigning IP address can also be detect by POSwitch
+       now.
+
+-----------------------------------------------------------------------------
+pofswitch-1.1.0                                                    2013-05-30
+-----------------------------------------------------------------------------
+    1. Match fields infomation of a processing packet is now get from the
+       describe of the next flow table, instead of the describe of the
+       GOTO_NEXT_TABLE.
+    2. Fix bugs.
+
+-----------------------------------------------------------------------------
+pofswitch-1.0                                                      2013-03-15
+-----------------------------------------------------------------------------
+
+    pofswitch-1.0 was released in March 15th, 2013!
