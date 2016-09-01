@@ -63,7 +63,7 @@ RHEL 6.3 with kernel 3.4.10. POFSwitch should be built manually with "./configur
 
 GNU make program.
 
-	Open a Terminal/Console, typing ¡°make -version¡± to check whether GNU make is
+	Open a Terminal/Console, typing `make -version` to check whether GNU make is
 	already installed. If it is not installed, download and install GNU make program
 	via anonymous ftp:
 
